@@ -24,4 +24,8 @@ Route::get('registration', 'App\Http\Controllers\Auth\AuthController@registratio
 Route::post('post-registration', 'App\Http\Controllers\Auth\AuthController@postRegistration')->name('register.post');
 /**Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); **/
 Route::get('dashboard', 'App\Http\Controllers\Auth\AuthController@dashboard'); 
+Route::get('posts', 'App\Http\Controllers\PostController@showPostData');
+Route::get('add-posts', 'App\Http\Controllers\PostController@addPostData'); 
+Route::get('post-posts', 'App\Http\Controllers\PostController@createPostData'); 
+
 Route::get('logout', 'App\Http\Controllers\Auth\AuthController@logout')->name('logout');
