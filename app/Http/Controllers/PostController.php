@@ -17,12 +17,17 @@ class PostController extends Controller
 	    return view('posts')->with("postData",$postData);
     }
 
-    public function createPostData()
+    public function showCreatePost()
+    {
+        return view('add-post');
+    }
+
+    public function createPostData(Request $request)
     {
     	$posts = new Posts;
  
-		$posts->title = 'Johnvv';
-		$posts->description = 'Johndescriptionbb';
+		$posts->title = $request->input('title');;
+		$posts->description = $request->input('description');;
  
 		$posts->save();
 
@@ -30,7 +35,24 @@ class PostController extends Controller
 	    $postData = Posts::getPostData();
 
 	    // Pass to view
-	    return view('posts')->with("postData",$postData);
+	    return redirect()->back()->with('status','Post Created Successfully');
+    }
+
+    public function showEditPost($id)
+    {
+        $postData = Posts::find($id);
+        return view('edit-post')->with("postData",$postData);;
+    }
+
+    public function updatePostData(Request $request, $id)
+    {
+        $postData = Posts::find($id);
+
+        $postData->title = $request->input('title');
+        $postData->description = $request->input('description');
+        
+        $postData->update();
+        return redirect()->back()->with('status','Post Updated Successfully');
     }
 
     

@@ -25,7 +25,8 @@ Route::post('post-registration', 'App\Http\Controllers\Auth\AuthController@postR
 /**Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); **/
 Route::get('dashboard', 'App\Http\Controllers\Auth\AuthController@dashboard'); 
 Route::get('posts', 'App\Http\Controllers\PostController@showPostData');
-Route::get('add-posts', 'App\Http\Controllers\PostController@addPostData'); 
-Route::get('post-posts', 'App\Http\Controllers\PostController@createPostData'); 
-
+Route::put('update-post/{id}', 'App\Http\Controllers\PostController@updatePostData'); 
+Route::post('create-post', 'App\Http\Controllers\PostController@createPostData'); 
+Route::get('edit-post/{id}', 'App\Http\Controllers\PostController@showEditPost');
+Route::get('add-post', 'App\Http\Controllers\PostController@showCreatePost');
 Route::get('logout', 'App\Http\Controllers\Auth\AuthController@logout')->name('logout');
